@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/Agarwalsahil/TodoAPI/controllers"
 	"github.com/Agarwalsahil/TodoAPI/db"
@@ -10,6 +11,11 @@ import (
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // fallback for local dev
+	}
+
 	db.InitDB()
 
 	server := gin.Default()
@@ -23,9 +29,9 @@ func main() {
 	authenticated.POST("/todos", controllers.CreateTodo)
 	authenticated.GET("/todos", controllers.GetTodos)
 	authenticated.PUT("/todos/:id", controllers.UpdateTodo)
-	authenticated.DELETE("/todos/:id", controllers.DeleteTodo )
+	authenticated.DELETE("/todos/:id", controllers.DeleteTodo)
 
 	log.Println("Server running on http://localhost:8080")
-	server.Run(":8080")
+	server.Run(":" + port)
 
 }
