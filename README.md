@@ -1,7 +1,7 @@
 
 # 📝 TODOAPI – RESTful ToDo API in Go
 
-A secure and efficient TODO list REST API built with **Go**, using **Gin**, **GORM**, **SQLite**, and **JWT authentication**.
+A secure and efficient TODO list REST API built with **Go**, using **Gin**, **GORM**, **SQLite**, and **JWT authentication**. This is my project following [Todo List API](https://roadmap.sh/projects/todo-list-api).
 
 ---
 
