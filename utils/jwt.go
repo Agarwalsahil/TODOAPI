@@ -28,7 +28,7 @@ func GenerateToken(email string) (string, error) {
 
 func ValidateToken(tokenStr string) (string, error) {
 	claims := &Claims{}
-	token, err := jwt.ParseWithClaims(tokenStr, claims, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenStr, claims, func(token *jwt.Token) (any, error) {
 		return jwtKey, nil
 	})
 
