@@ -3,19 +3,27 @@
 
 ![Go CI](https://github.com/Agarwalsahil/TODOAPI/actions/workflows/go.yml/badge.svg)
 
-A secure and efficient TODO list REST API built with **Go**, using **Gin**, **GORM**, **SQLite**, and **JWT authentication**. This is my project following [Todo List API](https://roadmap.sh/projects/todo-list-api).
+A secure and efficient TODO list REST API built with **Go**, using **Gin**, **GORM**, **SQLite**, and **JWT authentication**. Built as a learning project following the [Todo List API](https://roadmap.sh/projects/todo-list-api) challenge.
+
+---
+
+## 🚀 Deployed API
+
+**Live URL:**  
+➡️ [https://todoapi-nd4n.onrender.com](https://todoapi-nd4n.onrender.com)
 
 ---
 
 ## 🚀 Features
 
 - ✅ User registration and login with hashed passwords.
-- ✅ JWT-based authentication middleware.
-- ✅ CRUD operations for Todo items.
-- ✅ Pagination and filtering on todo list.
-- ✅ Per-user scoped data access.
-- ✅ SQLite database (simple and lightweight).
-- ✅ Clean project structure with modular code.
+- 🔐 JWT-based authentication middleware.
+- 📝 CRUD operations for Todo items.
+- 🔍 Pagination and filtering on todo list.
+- 🛡️ Per-user scoped data access.
+- 💾 SQLite database (simple and lightweight).
+- 🧪 Unit-tested endpoints with GitHub Actions CI
+- 🧱 Clean project structure with modular code.
 
 ---
 
@@ -38,6 +46,19 @@ TODOAPI/
 
 ---
 
+## 📦 API Endpoints
+
+| Method | Endpoint        | Description                  | Auth Required |
+|--------|------------------|------------------------------|----------------|
+| POST   | `/register`      | Register a new user          | ❌             |
+| POST   | `/login`         | Authenticate user & get JWT  | ❌             |
+| GET    | `/todos`         | Get all todos (paginated)    | ✅             |
+| POST   | `/todos`         | Create a new todo            | ✅             |
+| PUT    | `/todos/:id`     | Update a todo                | ✅             |
+| DELETE | `/todos/:id`     | Delete a todo                | ✅             |
+
+---
+
 ## 🔧 Setup Instructions
 
 ### 1. 📦 Clone the Repository
@@ -47,13 +68,19 @@ git clone https://github.com/Agarwalsahil/TODOAPI.git
 cd TODOAPI
 ```
 
-### 2. ✅ Install Dependencies
+### 2. ✅ Set Env Variable
+Create a .env file or set manually:
+```bash
+JWT_SECRET=your-secret-key
+```
+
+### 3. ✅ Install Dependencies
 
 ```bash
 go mod tidy
 ```
 
-### 3. ▶️ Run the API
+### 4. ▶️ Run the API
 
 ```bash
 go run main.go
@@ -105,6 +132,10 @@ Returns:
 ---
 
 ### 📋 Todo Operations (🔐 Require JWT in `Authorization` header)
+Include this header for all routes:
+```bash
+Authorization: Bearer <jwt_token>
+```
 
 #### ➕ Create Todo
 ```http
@@ -123,6 +154,7 @@ POST /todos
 ```http
 GET /todos?page=1&limit=5
 ```
+Defaults: page=1, limit=10
 
 #### ✏️ Update Todo
 ```http
@@ -160,6 +192,9 @@ curl -X POST http://localhost:8080/login -H "Content-Type: application/json" -d 
 ```bash
 curl -X POST http://localhost:8080/todos -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{"title": "New Task", "description": "Do it now"}'
 ```
+
+> 💡 **If you want to test the deployed version**, replace `http://localhost:8080` with:  
+> **🔗 https://todoapi-nd4n.onrender.com**
 
 ---
 
